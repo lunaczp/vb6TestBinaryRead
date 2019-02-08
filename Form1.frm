@@ -51,8 +51,13 @@ Private Sub UsingBytes()
       rst$ = rst$ & Chr(bytes(i))
    Next
 
-   Debug.Print "result:" & rst
-   Debug.Print "result len:" & Len(rst)
+   Debug.Print "byte result:" & rst
+   Debug.Print "byte result len:" & Len(rst)
+
+   For i = 1 To Len(rst)
+      Debug.Print "reCheck Offset " & i & ": " & Hex(Asc(Mid$(rst, i, 1)))
+   Next
+
 End Sub
 
 Private Sub UsingString()
