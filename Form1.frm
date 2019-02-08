@@ -45,6 +45,13 @@ Private Sub UsingBytes()
       Debug.Print Hex(bytes(i))
    Next
 
+   rst$ =""
+   For i = LBound(bytes) To UBound(bytes)
+      rst$ = rst$ & Chr(bytes(i))
+   Next
+
+   Debug.Print "result:" & rst
+   Debug.Print "result len:" & Len(rst)
 End Sub
 
 Private Sub usingString()
