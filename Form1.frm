@@ -26,6 +26,7 @@ Attribute VB_Exposed = False
 
 Private Sub Command1_Click()
    Call UsingBytes()
+   Call UsingString()
    DoEvents
 End Sub
 
@@ -42,7 +43,7 @@ Private Sub UsingBytes()
    Close fileNum
 
    For i = LBound(bytes) To UBound(bytes)
-      Debug.Print Hex(bytes(i))
+      Debug.Print "Offset " & i & ": " & Hex(bytes(i))
    Next
 
    rst$ =""
@@ -54,5 +55,23 @@ Private Sub UsingBytes()
    Debug.Print "result len:" & Len(rst)
 End Sub
 
-Private Sub usingString()
+Private Sub UsingString()
+   filename = "test.txt"
+
+   Dim fileNum As Integer
+   Dim fileContent As String
+
+   fileNum = FreeFile
+   Open Dir(filename) For Binary As fileNum
+   fileContent = String$(LOF(fileNum), " ")
+   Get fileNum, , fileContent
+   Close fileNum
+
+   For i = 1 To Len(fileContent)
+      Debug.Print "Offset " & i & ": " & Hex(Asc(Mid$(fileContent, i, 1)))
+   Next
+
+   Debug.Print "string:result:" &fileContent
+   Debug.Print "string:result len:" & Len(fileContent)
+
 End Sub
